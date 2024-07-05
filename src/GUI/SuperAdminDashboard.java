@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package GUI;
+
 import java.sql.ResultSet;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.util.Vector;
@@ -23,20 +24,20 @@ public class SuperAdminDashboard extends javax.swing.JFrame {
         loadStudent();
         
     }
-    private void loadStudent(){
+
+    private void loadStudent() {
         try {
             ResultSet resultSet = com.Mysql.execute("SELECT * FROM `student` INNER JOIN `subject` ON `student`.`subject_sb_id`=`subject`.`sb_id`");
-            DefaultTableModel model =(DefaultTableModel)jTable1.getModel();
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.setRowCount(0);
             
             while (resultSet.next()) {                
                 Vector vector = new Vector();
                 vector.add(resultSet.getString("sb_id"));
-                vector.add(resultSet.getString("fname"));               
+                vector.add(resultSet.getString("fname"));                
                 vector.add(resultSet.getString("lname"));
                 vector.add(resultSet.getString("mobile"));
                 vector.add(resultSet.getString("sub_name"));
-
                 
                 model.addRow(vector);
             }
@@ -297,19 +298,22 @@ public class SuperAdminDashboard extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
+//        System.exit(0);
+        Admin_login admin_login = new Admin_login();
+        this.dispose();
+        admin_login.setVisible(true);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        Admin_Register admin_Register= new Admin_Register();
+        Admin_Register admin_Register = new Admin_Register();
         this.dispose();
         admin_Register.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        AllAdminView adminView= new AllAdminView();
+        AllAdminView adminView = new AllAdminView();
         this.dispose();
         adminView.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -339,7 +343,7 @@ public class SuperAdminDashboard extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        AdminSalary as= new AdminSalary();
+        AdminSalary as = new AdminSalary();
         this.dispose();
         as.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed

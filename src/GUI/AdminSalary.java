@@ -4,9 +4,11 @@
  */
 package GUI;
 
+import java.sql.DriverManager;
 import static GUI.Teacher_salary.manthMap;
 import java.sql.ResultSet;
 import com.formdev.flatlaf.FlatDarkLaf;
+import com.sun.jdi.connect.spi.Connection;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -16,6 +18,9 @@ import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -62,7 +67,7 @@ public class AdminSalary extends javax.swing.JFrame {
 
             while (resultSet.next()) {
                 Vector vector = new Vector();
-                vector.add(resultSet.getString("admin_salary_id"));    
+                vector.add(resultSet.getString("admin_salary_id"));
                 vector.add(resultSet.getString("ad_id"));
                 vector.add(resultSet.getString("fname"));
                 vector.add(resultSet.getString("lname"));
@@ -616,7 +621,7 @@ public class AdminSalary extends javax.swing.JFrame {
             jButton2.setEnabled(false);
 
             int seletedRow = jTable1.getSelectedRow();
-            
+
             String SlId = String.valueOf(jTable1.getValueAt(seletedRow, 0));
             jTextField9.setText(SlId);
             jTextField9.setEditable(false);
@@ -679,7 +684,7 @@ public class AdminSalary extends javax.swing.JFrame {
         jTextField4.setEditable(false);
         String price = jTextField7.getText();
         String address = jTextField6.getText();
-        String SlID= jTextField9.getText();
+        String SlID = jTextField9.getText();
         String manth = String.valueOf(jComboBox2.getSelectedItem());
         Date date = jDateChooser1.getDate();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
@@ -699,10 +704,10 @@ public class AdminSalary extends javax.swing.JFrame {
             try {
                 ResultSet resultSet = com.Mysql.execute("SELECT * FROM `admin_salary` WHERE `admin_ad_id`='" + AdID + "' AND `admin_salary_id`='" + SlID + "'");
 
-                JOptionPane.showMessageDialog(this, "ok1", "Warning", JOptionPane.WARNING_MESSAGE);
+//                JOptionPane.showMessageDialog(this, "ok1", "Warning", JOptionPane.WARNING_MESSAGE);
 
                 if (resultSet.next()) {
-                    JOptionPane.showMessageDialog(this, "ok2", "Warning", JOptionPane.WARNING_MESSAGE);
+//                    JOptionPane.showMessageDialog(this, "ok2", "Warning", JOptionPane.WARNING_MESSAGE);
 
                     com.Mysql.execute("UPDATE `admin_salary` SET `price`='" + price + "' ,`date`='" + sdf.format(date) + "',"
                             + "`monthly_m_id`='" + manthId + "' WHERE `admin_ad_id`='" + AdID + "'");
@@ -719,6 +724,17 @@ public class AdminSalary extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
+        try {
+            HashMap<String, Object> map = new HashMap();
+            String reportPath = "src//report//nanik_admin_sl.jasper";
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(reportPath, map);
+            JasperViewer.viewReport(jasperPrint, false);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }//GEN-LAST:event_jButton6ActionPerformed
 
     /**

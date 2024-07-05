@@ -704,10 +704,10 @@ public class AdminSalary extends javax.swing.JFrame {
             try {
                 ResultSet resultSet = com.Mysql.execute("SELECT * FROM `admin_salary` WHERE `admin_ad_id`='" + AdID + "' AND `admin_salary_id`='" + SlID + "'");
 
-                JOptionPane.showMessageDialog(this, "ok1", "Warning", JOptionPane.WARNING_MESSAGE);
+//                JOptionPane.showMessageDialog(this, "ok1", "Warning", JOptionPane.WARNING_MESSAGE);
 
                 if (resultSet.next()) {
-                    JOptionPane.showMessageDialog(this, "ok2", "Warning", JOptionPane.WARNING_MESSAGE);
+//                    JOptionPane.showMessageDialog(this, "ok2", "Warning", JOptionPane.WARNING_MESSAGE);
 
                     com.Mysql.execute("UPDATE `admin_salary` SET `price`='" + price + "' ,`date`='" + sdf.format(date) + "',"
                             + "`monthly_m_id`='" + manthId + "' WHERE `admin_ad_id`='" + AdID + "'");

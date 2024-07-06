@@ -87,7 +87,7 @@ public class Add_New_Class extends javax.swing.JFrame {
 
     private void classLoad() {
         try {
-            ResultSet resultSet = com.Mysql.execute("SELECT * FROM `class` INNER JOIN `teacher` ON `class`.`teacher_t_id`=`teacher`.`t_id` INNER JOIN `subject` ON `class`.`subject_sb_id` =`subject`.`sb_id`");
+            ResultSet resultSet = com.Mysql.execute("SELECT * FROM `class` INNER JOIN `teacher` ON `class`.`teacher_t_id`=`teacher`.`t_id` INNER JOIN `subject` ON `class`.`subject_sb_id` =`subject`.`sb_id` ORDER BY `c_id` ASC");
 
             DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
             dtm.setRowCount(0);
@@ -155,13 +155,13 @@ public class Add_New_Class extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("ADD CLASS SHE");
+        jLabel1.setText("ADD CLASS SCHEDULE");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1225, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1227, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -352,7 +352,7 @@ public class Add_New_Class extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Class Shedule ID", "Class Titile", "Date", "Description", "Teacher", "Subject"
+                "Class Schedule ID", "Class Titile", "Date", "Description", "Teacher", "Subject"
             }
         ) {
             boolean[] canEdit = new boolean [] {

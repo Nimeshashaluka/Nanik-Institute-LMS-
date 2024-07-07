@@ -259,7 +259,7 @@ public class Student_Register extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please Enter your Last Name", "Warning", JOptionPane.WARNING_MESSAGE);
         } else if (mobile.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please Enter your Mobile Number", "Warning", JOptionPane.WARNING_MESSAGE);
-        } else if (mobile.matches("^[0]{1}[7]{1}[01245678]{1}[0-9]{8}$")) {
+        } else if (!mobile.matches("^07[0-8]\\d{7}$")) {
             JOptionPane.showMessageDialog(this, "Invalid Mobile Number", "Warning", JOptionPane.WARNING_MESSAGE);
         } else if (gender.equals("Select")) {
             JOptionPane.showMessageDialog(this, "Please Select Your Gender", "Warning", JOptionPane.WARNING_MESSAGE);
